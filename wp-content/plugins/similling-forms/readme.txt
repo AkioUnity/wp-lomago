@@ -1,4 +1,4 @@
-=== Image Hover Effects - WordPress Plugin ===
+=== Smiling Form Effects - WordPress Plugin ===
 Contributors: Labibahmed42
 Tags: image hover,CSS3 animations,image effects,grid,gallery
 Donate link: https://www.paypal.me/labibahmed/5
@@ -7,7 +7,7 @@ Tested up to: 6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Image Hover Effects is an amazing plugin that will allow user to add 40+ hover effects to images with captions.
+Smiling Form Effects is an amazing plugin that will allow user to add 40+ hover effects to images with captions.
 == Description ==
 
 <blockquote>
@@ -16,7 +16,7 @@ Image Hover Effects is an amazing plugin that will allow user to add 40+ hover e
 
 [vimeo https://vimeo.com/137003711]
 
-Image hover effects is an amazing collection of pure CSS3 effects with beautiful animations which you can apply on unlimited images with image headings and descriptions. It is really fast and easy to setup for any user without knowing any technical knowledge. It can be used for displaying gallery,team,portfolio and many more. Image Hover effects also have option to display images in slider.
+Smiling Form Effects is an amazing collection of pure CSS3 effects with beautiful animations which you can apply on unlimited images with image headings and descriptions. It is really fast and easy to setup for any user without knowing any technical knowledge. It can be used for displaying gallery,team,portfolio and many more. Smiling Form Effects also have option to display images in slider.
 It contains all the effects which are fully responsive on all devices and hover effects are touch enabled.It will allow user to add 40+ hover effects to images with captions.It include 40+ hover effects with 2 different styles and fully controllable admin options.You can create multiple categories with multiple shortcodes.
 It is the fastest and most easiest plugin to set up in just few minutes.It's only plugin that comes up with a flexible lightbox options. 
 It's a multipurpose wordpress plugin you can use it for displaying your <strong>Products,Portfolios,Testimonials,Image Galleries,Team Members.</strong><br/>
@@ -72,8 +72,8 @@ Now Visual Composer Extension is also available with alot of customizations opti
 
 == Installation ==
 1. Go to plugins in your dashboard and select 'add new'
-2. Search for 'Image Hover Effects' and install it
-3. Go to Dashboard > Image Hover Effects.Save options
+2. Search for 'Smiling Form Effects' and install it
+3. Go to Dashboard > Smiling Form Effects.Save options
 4. Get shortcode using Get Shortcode Button
 5. Use shorcode in Post,Page or Custom Post type
 6. Now visit that page and see plugin in action

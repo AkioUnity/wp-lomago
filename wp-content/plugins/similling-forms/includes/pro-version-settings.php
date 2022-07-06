@@ -148,7 +148,7 @@ $hover_effects = array(
     <div class="overlay-message">
         <p>Changes Saved..!</p>
     </div>
-    <h2 style="text-align: center;margin: 30px 0;">Image Hover Effects Pro Options</h2>
+    <h2 style="text-align: center;margin: 30px 0;">Smiling Form Effects Pro Options</h2>
     <div class="updated">
         This page is just for showing options for the pro version. You can see here which options are available in the pro version and how they would be used.It's image and category adding criteria is same as free version which is disabled in this page.
     </div>

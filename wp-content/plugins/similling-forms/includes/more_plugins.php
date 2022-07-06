@@ -11,12 +11,12 @@
 					<div class="postbox">
 						<h2 class="hndle">
 							<span class="dashicons dashicons-images-alt"></span>
-							Image Hover Effects – Visual Composer Extension
+							Smiling Form Effects – Visual Composer Extension
 						</h2>
 						<div class="inside">
 							<div class="main">
 								<p>
-									Image Hover Effects – Visual Composer Extension is an amazing plugin that will allow user to add 40+ hover effects to images with captions.This add-on add 20 circle and 15 square CSS3 transitions of hover thumbnail to the Visual Composer. Most of the transitions have 4 type of directions, thumbnail support lightbox or custom link, give user a lot of flexibility to add a grid gallery.
+									Smiling Form Effects – Visual Composer Extension is an amazing plugin that will allow user to add 40+ hover effects to images with captions.This add-on add 20 circle and 15 square CSS3 transitions of hover thumbnail to the Visual Composer. Most of the transitions have 4 type of directions, thumbnail support lightbox or custom link, give user a lot of flexibility to add a grid gallery.
 								</p>
 
 								<p>

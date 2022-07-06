@@ -28,7 +28,7 @@
 		}
 
 		function caption_hover_admin_options(){
-			add_menu_page( 'Image Hover Effects', 'Image Hover Effects', 'manage_options', 'caption_hover', array($this,'render_menu_page'), 'dashicons-format-image' );
+			add_menu_page( 'Smiling Form Effects', 'Smiling Form Effects', 'manage_options', 'caption_hover', array($this,'render_menu_page'), 'dashicons-format-image' );
 			// add_submenu_page( 'caption_hover', 'Pro Version Settings', 'Pro Version Settings','manage_options', 'caption_hover_pro_settings', array($this,'pro_version_settings'));
 			add_submenu_page( 'caption_hover', 'Export/Import', 'Export/Import','manage_options', 'caption_hover_submenu', array($this,'render_submenu_page'));
 		}
@@ -43,7 +43,7 @@
 				<div class="postbox">
 					<h3><span><?php _e( 'Export Settings' ); ?></span></h3>
 					<div class="inside">
-						<p><?php _e( 'Export the Image Hover Effects settings if you want to use it in to another site.You will get a json file which you can upload using import section`. This allows you to easily import the configuration into another site.' ); ?></p>
+						<p><?php _e( 'Export the Smiling Form Effects settings if you want to use it in to another site.You will get a json file which you can upload using import section`. This allows you to easily import the configuration into another site.' ); ?></p>
 						<form method="post">
 							<p><input type="hidden" name="wdo_action" value="export_settings" /></p>
 							<p>
@@ -57,7 +57,7 @@
 				<div class="postbox">
 					<h3><span><?php _e( 'Import Settings' ); ?></span></h3>
 					<div class="inside">
-						<p><?php _e( 'Import the Image Hover Effects settings by uploading a .json file. This file can be obtained by exporting the settings on another site using the form above.' ); ?></p>
+						<p><?php _e( 'Import the Smiling Form Effects settings by uploading a .json file. This file can be obtained by exporting the settings on another site using the form above.' ); ?></p>
 						<form method="post" enctype="multipart/form-data">
 							<p>
 								<input type="file" name="import_file"/>
@@ -88,9 +88,8 @@
 				<div class="overlay-message">
 				    <p>Changes Saved..!</p>
 				</div>
-				<h2 style="text-align: center;font-size: 30px;">Image Hover Effects</h2>
+				<h2 style="text-align: center;font-size: 30px;">Smiling Form Effects</h2>
 				<p style="text-align: center;">Best way to display images with text and animations.</p>
-				<a class="button button-primary" style="text-decoration: none;color: #fff;text-align: center;margin: 22px auto;display: block;width: 30%;font-size: larger;" href="<?php echo plugin_dir_url( __FILE__ ); ?>documentation/" target="_blank">Documentation</a>
 				
 				<div id="faqs-container" class="accordian">
 				<?php if (isset($saved_captions['posts'])) { ?>
@@ -420,7 +419,7 @@
 							
 					       	<span class="moreimages">
 					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
-								<button class="button-primary addcat"><?php _e( 'Add New Category', 'la-captionhover' ); ?></button>
+								<button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
 								<button class="button-primary fullshortcode pull-right" id="<?php echo $data2['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
 								
 					    	</span>
@@ -740,7 +739,7 @@
 							</table><br>
 							<span class="moreimages">
 					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b><?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
-								<button class="button-primary addcat"><?php _e( 'Add New Category', 'la-captionhover' ); ?></button>
+								<button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
 								<button class="button-primary fullshortcode pull-right" id="1"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
 								
 					    	</span>
@@ -754,7 +753,6 @@
 					<span id="la-loader" class="pull-right"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>images/ajax-loader.gif"></span>
 					<span id="la-saved"><strong><?php _e( 'Changes Saved!', 'la-captionhover' ); ?></strong></span>
 			</div>
-			<a style="text-decoration:none;"  href="https://1.envato.market/BW2Yx" target="_blank"><h4 style="border-radius: 20px;padding: 20px;background: #b72121;color: #fff;width: 40%;margin: 30px auto 0 auto;text-align:center;font-size:24px;">Get PRO Version</h4></a>
 			<p class="clearfix"></p>
 			
 		<?php
