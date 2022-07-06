@@ -1,5 +1,5 @@
 .image {
-	width: 230px;
+	width: 120px;
  	margin: 15px;
  	position: relative;
  	margin: 0 auto;
@@ -115,13 +115,6 @@
 .form-control {
 	padding: 8px;
  	border-radius: 5px;
-}
-
-.moreimages{
-	margin: 25px 0 10px 0;
-	display: block;
-	border: none !important;
-	background: none !important;
 }
 
 .moreimages > span {

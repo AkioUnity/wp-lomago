@@ -63,28 +63,6 @@ jQuery(document).ready(function($) {
         };
     });
 
-    $('.capbgtype').each(function(index, el) {
-        if ($(this).val()==='image') {
-            //$(this).closest('.form-table').find('.bgimagerow')
-            $(this).closest('.form-table').find('.bgimagerow').show();
-            $(this).closest('.form-table').find('.bgcolorrow').hide();
-        }else if($(this).val()==='color'){
-            $(this).closest('.form-table').find('.bgcolorrow').show();
-            $(this).closest('.form-table').find('.bgimagerow').hide();           
-        };
-    });
-
-    $('#caption').on('change', '.capbgtype', function(event) {
-        event.preventDefault();
-        if ($(this).val()=='image') {
-            $(this).closest('.form-table').find('.bgcolorrow').hide();
-            $(this).closest('.form-table').find('.bgimagerow').show();
-        }else if($(this).val()=='color'){
-            $(this).closest('.form-table').find('.bgimagerow').hide();
-            $(this).closest('.form-table').find('.bgcolorrow').show();
-        };
-    }); 
-
     $('#caption').on('change', '.caplightbox', function(event) {
         event.preventDefault();
         if ($(this).val()=='yes') {
@@ -201,16 +179,13 @@ jQuery(document).ready(function($) {
             var colorparent = jQuery(this).closest('.content').first().find('.ui-accordion-content').first();
             var headingcolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.head-color').val();
             var desccolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.desc-color').val();
-            var headingback = jQuery(this).closest('.content').find('.ui-accordion-content').find('.headingbg').val();
-            var capborder = jQuery(this).closest('.content').find('.ui-accordion-content').find('.capbordercolor').val();
-            var capback = jQuery(this).closest('.content').find('.ui-accordion-content').find('.capbgcolor').val();
 
             colorparent.find('.wp-picker-container').remove();
             colorparent.find('.insert-picker:eq(0)').append('<input type="text" class="head-color" value="'+headingcolor+'" />');
             colorparent.find('.insert-picker:eq(2)').append('<input type="text" class="desc-color" value="'+desccolor+'" />');
 
             jQuery('.accordian').accordion('refresh'); 
-            colorparent.find('.head-color,.desc-color,.capbgcolor').wpColorPicker();
+            colorparent.find('.head-color,.desc-color').wpColorPicker();
 
     });
 
@@ -241,15 +216,13 @@ jQuery(document).ready(function($) {
             
             var headingcolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.head-color').val();
             var desccolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.desc-color').val();
-            var headingback = jQuery(this).closest('.content').find('.ui-accordion-content').find('.headingbg').val();
-            var capborder = jQuery(this).closest('.content').find('.ui-accordion-content').find('.capbordercolor').val();
-            var capback = jQuery(this).closest('.content').find('.ui-accordion-content').find('.capbgcolor').val();
+
 
             colorappend.find('.wp-picker-container').remove();
             colorappend.find('.insert-picker:eq(0)').append('<input type="text" class="head-color" value="'+headingcolor+'" />');
             colorappend.find('.insert-picker:eq(2)').append('<input type="text" class="desc-color" value="'+desccolor+'" />');
 
-            colorappend.find('.head-color,.desc-color,.capbgcolor').wpColorPicker();
+            colorappend.find('.head-color,.desc-color').wpColorPicker();
             content.find('button.fullshortcode').attr('id', sCounter);
             jQuery('.accordian').accordion('refresh');
 
@@ -293,7 +266,7 @@ jQuery(document).ready(function($) {
 
             
     });
-    jQuery('.head-color,.desc-color,.capbgcolor,.headingbg,.leftbordercolor,.rightbordercolor,.capbordercolor').wpColorPicker();  
+    jQuery('.head-color,.desc-color').wpColorPicker();
 
     jQuery('#caption').on('click', '.save-meta', function(event) {
         event.preventDefault();     
@@ -310,14 +283,7 @@ jQuery(document).ready(function($) {
                 images.cat_name = jQuery(this).find('.catname').val();
                 images.cap_img = jQuery(this).find('img').attr('src');
                 images.cap_head = jQuery(this).find('.capheading').val();
-                images.cap_desc = jQuery(this).find('.capdesc').val();
-                images.cap_link = jQuery(this).find('.caplink').val();
-                images.cap_style = jQuery(this).find('.styleopt').val();
-                images.cap_effect = jQuery(this).find('.effectopt').val();
-                images.cap_direction = jQuery(this).find('.directionopt').val();
-                images.cap_headcolor =  jQuery(this).find('.head-color').val(),
-                images.cap_desccolor =  jQuery(this).find('.desc-color').val(),
-                images.cap_grid = jQuery(this).find('.capgrid').val();
+
                 images.shortcode = jQuery(this).find('.fullshortcode').attr('id');
                 images.counter = jQuery(this).siblings().find('.fullshortcode').attr('id'); 
                 cats.allcapImages.push(images);
@@ -340,7 +306,7 @@ jQuery(document).ready(function($) {
 
     jQuery('.content').on('click','button.fullshortcode',function(event) {
         event.preventDefault();
-        prompt("Copy and use this Shortcode", '[image-caption-hover id="'+jQuery(this).attr('id')+'"]');
+        prompt("Copy and use this Shortcode", '[smiling-form id="'+jQuery(this).attr('id')+'"]');
     });
 
     jQuery('.enableprev').click(function() {

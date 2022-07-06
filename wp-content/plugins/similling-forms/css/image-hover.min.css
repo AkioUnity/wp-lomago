@@ -1060,24 +1060,6 @@
   clear: both;
 }
 
-
-.ih-item.square.effect1,
-.ih-item.square.effect11,
-.ih-item.square.effect12,
-.ih-item.square.effect13,
-.ih-item.square.effect15,
-.ih-item.square.effect16,
-.ih-item.square.effect17,
-.ih-item.square.effect18,
-.ih-item.square.effect19,
-.ih-item.square.effect2,
-.ih-item.square.effect3,
-.ih-item.square.effect4,
-.ih-item.square.effect6,
-.ih-item.square.effect7,
-.ih-item.square.effect8 {
-    overflow: hidden;
-}
 .ih-item.circle .info,
 .ih-item.square .info {
     right: 0;
