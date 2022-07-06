@@ -94,22 +94,28 @@
                                                            title="Remove Category"></span></button>
                     </h3>
 				   <div class="accordian content">
-                       <h4><a href="#">Field</a><button class="button removeitem"><span class="dashicons dashicons-dismiss" title="Remove Image"></span></button></h4>
-                       <div class="moreimages">
-					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
-                                <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
-					    	</div>
-				<?php foreach ($data['allcapImages'] as $key => $data2) { ?>
-                    <h3><a href="#"><?php if ( $data2['img_name'] !== '' ) {
+				<?php $cn=0;
+                foreach ($data['allcapImages'] as $key => $data2) {
+                    $cn++;
+                    if ($cn==1){
+                    ?>
+                        <h4 style="background: darkred">Form Settings</h4>
+                        <div class="moreimages">
+                        <button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Field', 'la-captionhover' ); ?></button>
+                        <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
+                        <table class="form-table">
+                    <?php }else{ ?>
+                        <h3><a href="#"><?php if ( $data2['img_name'] !== '' ) {
 								echo stripcslashes( $data2['img_name'] );
 							} else {
 								echo "Field";
 							}?>
 							</a>
-                        <button class="button removeitem"><span class="dashicons dashicons-dismiss"
+                            <button class="button removeitem"><span class="dashicons dashicons-dismiss"
                                                                 title="Remove Image"></span></button>
-                    </h3>
-				        <div>
+                        </h3>
+                        <div>
+                        <?php } ?>
 				        	<table class="form-table">
 				        		<tr>
 				        			<td >
@@ -128,11 +134,10 @@
 					        					</span>
 				        					</span>'; } ?>
 
-				        	</span>
+				        	            </span>
                                     </td>
 				        		</tr>
 				        	</table>
-				        	<br>
 				        </div>
 				        <?php } ?>
 				   </div>
@@ -177,14 +182,16 @@ function render_caption_hovers($atts){
 		<div class="image-hover-page-container animatedParent">
 				<?php foreach($saved_captions['posts'] as $key => $data): ?>
 			<?php if ($atts['id']== $data['shortcode']): ?>
-					<?php foreach($data['allcapImages'] as $key => $data2): ?>
-							<?php
-								wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
-								wp_enqueue_script( 'wdo-hover-front-js', plugins_url( 'js/front.js', __FILE__ ), array('jquery'));
-							 ?>
+					<?php
+					$cn=0;
+					foreach($data['allcapImages'] as $key => $data2):
+					    $cn++;
+                        wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
+                        wp_enqueue_script( 'wdo-hover-front-js', plugins_url( 'js/front.js', __FILE__ ), array('jquery'));
+                        if ($cn==1){ ?>
                             <div class="ih-item circle effect1">
                                 <div class='spinner'></div>
-                                <div class="img"><img style="height:100%;" src="<?php if ( $data2['cap_img'] != '' ) {
+                                <div class="img"><img id="smile_img" style="height:100%;" src="<?php if ( $data2['cap_img'] != '' ) {
 										echo $data2['cap_img'];
 									} else {
 										echo "http://www.gemologyproject.com/wiki/images/5/5f/Placeholder.jpg";
@@ -192,9 +199,22 @@ function render_caption_hovers($atts){
 									?>" alt="img">
                                 </div>
                             </div>
-					<?php endforeach; ?>
+                            <script type="text/javascript">
+                                let smile_image=document.querySelector("#smile_img");
+                                let image_url;
+                            </script>
+                            <?php }else{ ?>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+   document.querySelector('[name="<?=$data2['img_name']?>"]').onfocus=function (){
+                image_url='<?=$data2['cap_img']?>';
+                smile_image.src=image_url;
+            }
+            });
+</script>
+					        <?php }
+                    endforeach; ?>
 					<?php endif ?>
-
 				<?php endforeach; ?>
 		</div>
 		<?php				

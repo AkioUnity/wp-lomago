@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-    jQuery('.moreimages span').remove();
+    // jQuery('.moreimages span').remove();
 
     jQuery('#la-loader').hide();
   jQuery('#la-saved').hide();
@@ -53,10 +53,10 @@ jQuery(document).ready(function($) {
      
         event.preventDefault();
      
-     var parent = jQuery(this).closest('.ui-accordion-content').find('.image');
+         var parent = jQuery(this).closest('.ui-accordion-content').find('.image');
         // Create the media frame.
         la_caption_hover = wp.media.frames.la_caption_hover = wp.media({
-          title: 'Select Images for Caption Hover',
+          title: 'Select Images for Smiling Field',
           button: {
             text: 'Add Image',
           },
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
             var selection = la_caption_hover.state().get('selection');
             selection.map( function( attachment ) {
                 attachment = attachment.toJSON();
-                
+                console.log(parent);
                 parent.append('<span><img src="'+attachment.url+'"><span class="dashicons dashicons-dismiss"></span></span>');
 
             });  
