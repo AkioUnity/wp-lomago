@@ -29,12 +29,7 @@
 
 		function caption_hover_admin_options(){
 			add_menu_page( 'Smiling Form Effects', 'Smiling Form Effects', 'manage_options', 'caption_hover', array($this,'render_menu_page'), 'dashicons-format-image' );
-			// add_submenu_page( 'caption_hover', 'Pro Version Settings', 'Pro Version Settings','manage_options', 'caption_hover_pro_settings', array($this,'pro_version_settings'));
 			add_submenu_page( 'caption_hover', 'Export/Import', 'Export/Import','manage_options', 'caption_hover_submenu', array($this,'render_submenu_page'));
-		}
-
-		function pro_version_settings(){
-			include 'includes/pro-version-settings.php';
 		}
 
 		function render_submenu_page(){
@@ -81,7 +76,7 @@
 
 		function render_menu_page(){
 			$saved_captions = get_option( 'la_caption_hover' );
-			$pro_link = 'https://1.envato.market/BW2Yx';
+			$pro_link = 'https://lomago.io';
 			?>
 			<div class="wrapper" id="caption">
 				<div class="se-saved-con"></div>
@@ -89,7 +84,7 @@
 				    <p>Changes Saved..!</p>
 				</div>
 				<h2 style="text-align: center;font-size: 30px;">Smiling Form Effects</h2>
-				<p style="text-align: center;">Best way to display images with text and animations.</p>
+				<p style="text-align: center;">setting for Smiling Form Effects</p>
 				
 				<div id="faqs-container" class="accordian">
 				<?php if (isset($saved_captions['posts'])) { ?>
@@ -207,21 +202,6 @@
 								</tr>
 
 								<tr>
-								    <td>
-								        <strong><?php _e( 'Touch behaviour on mobile', 'la-captionhover' ); ?>  <b> <a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-								    </td>
-								    <td>
-								        <select class="captouchmobile form-control">
-								            <option value="default"><?php _e( 'Default', 'la-captionhover' ); ?></option>
-								            <option value="hoverontap"><?php _e( 'First Tap Hover, Second Tap Open Link', 'la-captionhover' ); ?></option> 
-								        </select>
-								    </td>
-								    <td>
-								        <p class="description"><?php _e( 'Select how you want links to behave on touch devices such as mobiles and tablets.', 'la-captionhover' ); ?></p>
-								    </td>
-								</tr>
-
-								<tr>
 				  					<td>
 				  						<strong><?php _e( 'Caption Title Color', 'la-captionhover' ); ?></strong>
 				  					</td>
@@ -244,45 +224,11 @@
 				  						<p class="description"><?php _e( 'Choose font color for caption description', 'la-captionhover' ); ?>.</p>
 				  					</td>
 			  					</tr>
-			  					<tr>
-			  					    <td>
-			  					        <strong><?php _e( 'Title | Description Font Size', 'la-captionhover' ); ?> <b> <a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-			  					    </td>
-			  					    <td>
-			  					        <input type="number" class="headfontsize form-control">
-			  					    </td>
-			  					    <td>
-			  					        <p class="description"><?php _e( 'Give the font size(it will be in px) of Caption Heading and Description.(Default 22)', 'la_caption_hover' ); ?></p>
-			  					    </td>
-			  					</tr>
 							</table>
 							<hr>
 							<h4 style="font-size: 20px;text-align: center;"><?php _e( 'Hover Settings', 'la-captionhover' ); ?></h4>
 							<hr>
 							<table class="form-table">
-								<tr>
-								    <td style="width:30%">
-								        <strong><?php _e( 'Thumbnail Width', 'la-captionhover' ); ?> <b><a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-								        
-								    </td>
-								    <td style="width:30%">
-								        <input type="number" class="form-control thumbwidth">
-								    </td>
-								    <td style="width:40%">
-								        <p class="description"><?php _e( 'Give thumbnail width (keep width and height same for circle style) for the thumbnail.<b>Default(220px)</b>', 'la-captionhover' ); ?></p>
-								    </td>
-								</tr>
-								<tr>
-								    <td>
-								        <strong><?php _e( 'Thumbnail Height', 'la-captionhover' ); ?> <b><a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></strong>        
-								    </td>
-								    <td>
-								        <input type="number" class="form-control thumbheight">
-								    </td>
-								    <td>
-								        <p class="description"><?php _e( 'Give thumbnail height (keep width and height same for circle style) for the thumbnail.<b>Default(220px)</b>', 'la-captionhover' ); ?></p>
-								    </td>
-								</tr>
 								<tr>
 									<td>
 										<strong><?php _e( 'Image Shape', 'la-captionhover' ); ?></strong>
@@ -400,21 +346,6 @@
 								    </td>
 								    <td><p class="description"><?php _e( 'Choose background color for the caption.(Default #1a4a72)', 'la-captionhover' ); ?></p></td>
 								</tr>
-								<tr class="bgimagerow"> 
-								    <td>
-								        <strong><?php _e( 'Background Size', 'la-captionhover' ); ?><b> <a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-								    </td>
-								    <td>
-								        <select class="capbgsize form-control widefat">
-								          <option value="cover">Cover</option>
-								          <option value="contain">Contain</option>
-								          <option value="100% 100%">Full</option>
-								        </select>
-
-								    </td>
-								    <td><p class="description"><?php _e( 'Choose background size.', 'la-captionhover' ); ?></p></td>
-								</tr>
-
 							</table>
 							
 					       	<span class="moreimages">
@@ -525,22 +456,6 @@
 										<p class="description"><?php _e( 'Choose want to open link in new tab or not.', 'la-captionhover' ); ?></p>
 									</td>
 								</tr>
-
-								<tr>
-								    <td>
-								        <strong><?php _e( 'Touch behaviour on mobile', 'la-captionhover' ); ?>  <b> <a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-								    </td>
-								    <td>
-								        <select class="captouchmobile form-control">
-								            <option value="default"><?php _e( 'Default', 'la-captionhover' ); ?></option>
-								            <option value="hoverontap"><?php _e( 'First Tap Hover, Second Tap Open Link', 'la-captionhover' ); ?></option> 
-								        </select>
-								    </td>
-								    <td>
-								        <p class="description"><?php _e( 'Select how you want links to behave on touch devices such as mobiles and tablets.', 'la-captionhover' ); ?></p>
-								    </td>
-								</tr>
-
 								<tr>
 				  					<td>
 				  						<strong><?php _e( 'Caption Title Color', 'la-captionhover' ); ?></strong>
@@ -564,45 +479,11 @@
 				  						<p class="description"><?php _e( 'Choose font color for caption description', 'la-captionhover' ); ?>.</p>
 				  					</td>
 			  					</tr>
-			  					<tr>
-			  					    <td>
-			  					        <strong><?php _e( 'Title | Description Font Size', 'la-captionhover' ); ?> <b> <a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-			  					    </td>
-			  					    <td>
-			  					        <input type="number" class="headfontsize form-control">
-			  					    </td>
-			  					    <td>
-			  					        <p class="description"><?php _e( 'Give the font size(it will be in px) of Caption Heading.(Default 22)', 'la_caption_hover' ); ?></p>
-			  					    </td>
-			  					</tr>
 							</table>
 							<hr>
 							<h4 style="font-size: 20px;text-align: center;"><?php _e( 'Hover Settings', 'la-captionhover' ); ?></h4>
 							<hr>
 							<table class="form-table">
-								<tr>
-								    <td style="width:30%">
-								        <strong><?php _e( 'Thumbnail Width', 'la-captionhover' ); ?> <b><a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-								        
-								    </td>
-								    <td style="width:30%">
-								        <input type="number" class="form-control thumbwidth">
-								    </td>
-								    <td style="width:40%">
-								        <p class="description"><?php _e( 'Give thumbnail width (keep width and height same for circle style) for the thumbnail.<b>Default(220px)</b>', 'la-captionhover' ); ?></p>
-								    </td>
-								</tr>
-								<tr>
-								    <td>
-								        <strong><?php _e( 'Thumbnail Height', 'la-captionhover' ); ?> <b><a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></strong>        
-								    </td>
-								    <td>
-								        <input type="number" class="form-control thumbheight">
-								    </td>
-								    <td>
-								        <p class="description"><?php _e( 'Give thumbnail height (keep width and height same for circle style) for the thumbnail.<b>Default(220px)</b>', 'la-captionhover' ); ?></p>
-								    </td>
-								</tr>
 								<tr>
 									<td>
 										<strong><?php _e( 'Image Shape', 'la-captionhover' ); ?></strong>
@@ -721,21 +602,6 @@
 								    </td>
 								    <td><p class="description"><?php _e( 'Choose background color for the caption.(Default #1a4a72)', 'la-captionhover' ); ?></p></td>
 								</tr>
-								<tr class="bgimagerow"> 
-								    <td>
-								        <strong><?php _e( 'Background Size', 'la-captionhover' ); ?><b> <a class="pro-feature" href="<?php echo $pro_link; ?>" target="_blank">(PRO Feature)</a></b></strong>
-								    </td>
-								    <td>
-								        <select class="capbgsize form-control widefat">
-								          <option value="cover">Cover</option>
-								          <option value="contain">Contain</option>
-								          <option value="100% 100%">Full</option>
-								        </select>
-
-								    </td>
-								    <td><p class="description"><?php _e( 'Choose background size.', 'la-captionhover' ); ?></p></td>
-								</tr>
-
 							</table><br>
 							<span class="moreimages">
 					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b><?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
