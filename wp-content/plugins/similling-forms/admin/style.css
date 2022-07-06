@@ -153,16 +153,6 @@
 	background-color:yellow;
 }
 
-.se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(../images/loader2.gif) center no-repeat #fff;
-}
-
 .se-saved-con {
 	display: none;
 	position: fixed;

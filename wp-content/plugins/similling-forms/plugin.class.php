@@ -89,15 +89,10 @@
 				<div id="faqs-container" class="accordian">
 				<?php if (isset($saved_captions['posts'])) { ?>
 				<?php foreach ($saved_captions['posts'] as $key => $data) { ?>
-                        <h3><a href="#"><?php if ( $data['cat_name'] !== '' ) {
-									echo stripcslashes( $data['cat_name'] );
-								} else {
-									echo "Smiling Form";
-								} ?>
-                            </a>
-                            <button class="button removecat"><span class="dashicons dashicons-dismiss"
-                                                                   title="Remove Category"></span></button>
-                        </h3>
+                    <h3><a href="#"><?php echo "Form" . $data['shortcode'];} ?>  </a>
+                        <button class="button removecat"><span class="dashicons dashicons-dismiss"
+                                                           title="Remove Category"></span></button>
+                    </h3>
 				   <div class="accordian content">
                        <h4><a href="#">Field</a><button class="button removeitem"><span class="dashicons dashicons-dismiss" title="Remove Image"></span></button></h4>
                        <div class="moreimages">
@@ -105,74 +100,43 @@
                                 <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
 					    	</div>
 				<?php foreach ($data['allcapImages'] as $key => $data2) { ?>
-				        <h3><a href="#"><?php if ($data2['img_name']!=='') {
-				        	echo stripcslashes($data2['img_name']);
-				        } else {
-				        	echo "Field";
-				        }
-				         ?></a><button class="button removeitem"><span class="dashicons dashicons-dismiss" title="Remove Image"></span></button></h3>
+                    <h3><a href="#"><?php if ( $data2['img_name'] !== '' ) {
+								echo stripcslashes( $data2['img_name'] );
+							} else {
+								echo "Field";
+							}?>
+							</a>
+                        <button class="button removeitem"><span class="dashicons dashicons-dismiss"
+                                                                title="Remove Image"></span></button>
+                    </h3>
 				        <div>
 				        	<table class="form-table">
 				        		<tr>
-				        			<td style="width:30%">
-				        				<strong><?php _e( 'Category Name', 'la-captionhover' ); ?></strong>
-				        			</td>
-
-				        			<td style="width:30%">
-				        				<input type="text" class="catname widefat form-control" value="<?php echo stripcslashes($data['cat_name']); ?>">
-				        			</td>
-
-				        			<td style="width:40%">
-				        				<p class="description"><?php _e( 'Name the category which would be shown on tab.It is only for reference.Category name should be same for everyimage', 'la-captionhover' ); ?></p>
-				        			</td>
-				        		</tr>
-				        		<tr>
 				        			<td >
-				        				<strong><?php _e( 'Image Name', 'la-captionhover' ); ?></strong>
+				        				<strong><?php _e( 'Field Name', 'la-captionhover' ); ?></strong>
 				        			</td>
-
 				        			<td >
 				        				<input type="text" class="imgname widefat form-control" value="<?php echo ( isset($data2['img_name']) && $data2['img_name'] != '' ) ? stripcslashes($data2['img_name']) : ''; ?>">
 				        			</td>
-
-				        			<td>
-				        				<p class="description"><?php _e( 'Name to be shown on current inner tab.It will be for your reference only.', 'la-captionhover' ); ?></p>
-				        			</td>
-				        		</tr>
-				        	</table>
-				        	<button class="addimage button"><?php _e( 'Upload Image', 'la-captionhover' ); ?></button>
-				        	<span class="image">
+                                    <td>
+                                        <button class="addimage button"><?php _e( 'Upload Image', 'la-captionhover' ); ?></button>
+                                        <span class="image">
 				        		<?php if (isset($data2['cap_img']) &&  $data2['cap_img']!='') {
-				        			echo '<span>
+							        echo '<span>
 				        						<img src="'.$data2['cap_img'].'">
 					        					<span class="dashicons dashicons-dismiss">
 					        					</span>
 				        					</span>'; } ?>
 
-				        	</span><br>
-				        	<hr>
-				        	<h4 style="font-size: 20px;text-align: center;"><?php _e( 'Caption Settings', 'la-captionhover' ); ?></h4>
-				        	<hr>
-							<table class="form-table">
-								<tr>
-									<td style="width:30%">
-										<strong><?php _e( 'Caption Heading', 'la-captionhover' ); ?></strong>
-									</td>
-									<td style="width:30%">
-										<input type="text" class="widefat capheading form-control" value="<?php echo stripcslashes($data2['cap_head']); ?>">
-									</td>
-									<td style="width:40%">
-										<p class="description"><?php _e( 'Give heading to be shown on image.', 'la-captionhover' ); ?></p>
-									</td>
-								</tr>
-							</table>
+				        	</span>
+                                    </td>
+				        		</tr>
+				        	</table>
+				        	<br>
 				        </div>
 				        <?php } ?>
-
 				   </div>
-				   <?php }  ?>
 				   <?php } else { ?>
-
 				    <h3><a href="#">Image Caption Hover</a><button class="button removecat"><span class="dashicons dashicons-dismiss" title="Delete Category"></span></button></h3>
 
 				   <div class="accordian content">
@@ -181,55 +145,18 @@
 				        <div>
 				        	<table class="form-table">
 				        		<tr>
-				        			<td style="width:30%">
-				        				<strong><?php _e( 'Category Name', 'la-captionhover' ); ?></strong>
-				        			</td>
-
-				        			<td style="width:30%">
-				        				<input type="text" class="catname widefat form-control">
-				        			</td>
-
-				        			<td style="width:40%">
-				        				<p class="description"><?php _e( 'Name the category which would be shown on tab.It is only for reference.Category name should be same for everyimage', 'la-captionhover' ); ?></p>
-				        			</td>
-				        		</tr>
-				        		<tr>
 				        			<td >
-				        				<strong><?php _e( 'Image Name', 'la-captionhover' ); ?></strong>
+				        				<strong><?php _e( 'Field Name', 'la-captionhover' ); ?></strong>
 				        			</td>
-
 				        			<td >
 				        				<input type="text" class="imgname widefat form-control" value="">
-				        			</td>
-
-				        			<td>
-				        				<p class="description"><?php _e( 'Name to be shown on current inner tab.It will be for your reference only.', 'la-captionhover' ); ?></p>
 				        			</td>
 				        		</tr>
 				        	</table>
 				        	<button class="addimage button"><?php _e( 'Upload Image', 'la-captionhover' ); ?></button>
 				        	<span class="image">
-
-				        	</span><br>
-				        	<hr>
-				        	<h4 style="font-size: 20px;text-align: center;"><?php _e( 'Caption Settings', 'la-captionhover' ); ?></h4>
-				        	<hr>
-							<table class="form-table">
-								<tr>
-									<td style="width:30%">
-										<strong><?php _e( 'Caption Heading', 'la-captionhover' ); ?></strong>
-									</td>
-									<td style="width:30%">
-										<input type="text" class="widefat capheading form-control">
-									</td>
-									<td style="width:40%">
-										<p class="description"><?php _e( 'Give heading to be shown on image.', 'la-captionhover' ); ?></p>
-									</td>
-								</tr>
-							</table>
+				        	</span>
 				        </div>
-
-
 				   </div>
 				<?php } ?>
 				</div>

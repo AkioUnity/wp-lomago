@@ -1,77 +1,9 @@
 jQuery(document).ready(function($) {
-    $(window).load(function(){
-       $('.se-pre-con').fadeOut();
-    });
-
-    $('.scrollable').each(function(index, el) { 
-        if ($(this).val()==='yes') {
-            $(this).closest('.form-table').find('.scorll-style-row').show();
-        } else{
-            $(this).closest('.form-table').find('.scorll-style-row').hide();
-        }
-    });
-
-    $('#caption').on('change', '.scrollable', function(event) {
-        event.preventDefault();
-        if ($(this).val()==='yes') {
-            $(this).closest('.form-table').find('.scorll-style-row').show();
-        } else{
-            $(this).closest('.form-table').find('.scorll-style-row').hide();
-        }
-    });
-
-    /*Choosing Slider Mode*/
-
-    $('#caption').on('change', '.slidermode', function(event) {
-        event.preventDefault();
-        if ($(this).val()=='wdo-slider') {
-            $(this).closest('.form-table').find('.grid-row').hide();
-            $(this).closest('.form-table').find('.slides-row').show();
-        }else if($(this).val()==''){
-            $(this).closest('.form-table').find('.grid-row').show();
-            $(this).closest('.form-table').find('.slides-row').hide();
-        };
-    });
-
-    $('.slidermode').each(function(index, el) {
-        if ($(this).val()==='wdo-slider') {
-            $(this).closest('.form-table').find('.grid-row').hide();
-            $(this).closest('.form-table').find('.slides-row').show();
-        } else{
-            $(this).closest('.form-table').find('.grid-row').show();
-            $(this).closest('.form-table').find('.slides-row').hide();
-        }
-    });
-
     jQuery('.moreimages span').remove();
 
     jQuery('#la-loader').hide();
   jQuery('#la-saved').hide();
-    $('.caplightbox').each(function(index, el) {
-        if ($(this).val()==='yes') {
-            $(this).closest('.form-table').find('.lightbox-content-container').show();
-        }else if($(this).val()==='no'){
-            $(this).closest('.form-table').find('.lightbox-content-container').hide();           
-        };
-    });
 
-    $('#caption').on('change', '.caplightbox', function(event) {
-        event.preventDefault();
-        if ($(this).val()=='yes') {
-            $(this).closest('.form-table').find('.lightbox-content-container').show();
-        }else if($(this).val()=='no'){
-            $(this).closest('.form-table').find('.lightbox-content-container').hide();
-        };
-    });
-
-    $('#caption').on('change', '.headoverimage', function(event) {
-        event.preventDefault();
-        if ($(this).val()=='yes') {
-            $(this).closest('.form-table').find('.titlepostion-row').show();
-        }else if($(this).val()=='no'){
-            $(this).closest('.form-table').find('.titlepostion-row').hide();
-        };
-    });
 
     setTimeout(function() {
         jQuery('#faqs-container >.ui-accordion-content').first().addClass('firstelement');
@@ -163,7 +95,7 @@ jQuery(document).ready(function($) {
             });
             var parent = jQuery(this).closest('.content');
             var heading = jQuery(this).closest('.content').find('h3:first').clone(true);
-            var heading_text = heading.find('a').text('New Form');
+            var heading_text = heading.find('a').text('New Field');
             var content = jQuery(this).closest('.content').find('h3:first').next().clone(true).removeClass('firstelement');
             jQuery(parent).append(heading).append(content);
             // jQuery(parent).append(heading);
@@ -241,15 +173,12 @@ jQuery(document).ready(function($) {
         var allcats = []; 
           jQuery('.accordian>.content').each(function(index,val) {
             var cats = {};
-            cats.cat_name = jQuery(this).find('.catname').val();
             cats.shortcode=jQuery(this).find('.fullshortcode').attr('id');
             cats.allcapImages = [];
             jQuery(this).find('.ui-accordion-content').each(function(index, val) {
                 var images = {};
                 images.img_name = jQuery(this).find('.imgname').val();
-                images.cat_name = jQuery(this).find('.catname').val();
                 images.cap_img = jQuery(this).find('img').attr('src');
-                images.cap_head = jQuery(this).find('.capheading').val();
                 cats.allcapImages.push(images);
             });
             allcats.push(cats);
@@ -257,7 +186,7 @@ jQuery(document).ready(function($) {
         });
         var data = {
             action : 'la_save_caption_options',
-             posts : allcats       
+             posts : allcats
         } 
 
          jQuery.post(laAjax.url, data, function(resp) {
