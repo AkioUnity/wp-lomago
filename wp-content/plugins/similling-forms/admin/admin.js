@@ -1,12 +1,4 @@
 jQuery(document).ready(function($) {
-
-    /***** Preview Shortcode Start ********/
-
-    $('.wdo-preview-button').click(function(){
-         $('.preview-container').toggle();
-    });
-    /***** Preview Shortcode End ********/
-
     $(window).load(function(){
        $('.se-pre-con').fadeOut();
     });
@@ -52,7 +44,7 @@ jQuery(document).ready(function($) {
     });
 
     jQuery('.moreimages span').remove();
-    jQuery('.preview').hide();
+
     jQuery('#la-loader').hide();
   jQuery('#la-saved').hide();
     $('.caplightbox').each(function(index, el) {
@@ -171,35 +163,25 @@ jQuery(document).ready(function($) {
             });
             var parent = jQuery(this).closest('.content');
             var heading = jQuery(this).closest('.content').find('h3:first').clone(true);
-            var heading_text = heading.find('a').text('New Image');
+            var heading_text = heading.find('a').text('New Form');
             var content = jQuery(this).closest('.content').find('h3:first').next().clone(true).removeClass('firstelement');
             jQuery(parent).append(heading).append(content);
             // jQuery(parent).append(heading);
-
-            var colorparent = jQuery(this).closest('.content').first().find('.ui-accordion-content').first();
-            var headingcolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.head-color').val();
-            var desccolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.desc-color').val();
-
-            colorparent.find('.wp-picker-container').remove();
-            colorparent.find('.insert-picker:eq(0)').append('<input type="text" class="head-color" value="'+headingcolor+'" />');
-            colorparent.find('.insert-picker:eq(2)').append('<input type="text" class="desc-color" value="'+desccolor+'" />');
-
-            jQuery('.accordian').accordion('refresh'); 
-            colorparent.find('.head-color,.desc-color').wpColorPicker();
+            jQuery('.accordian').accordion('refresh');
 
     });
 
         jQuery('#caption').on('click', '.addcat', function() { 
             sCounter++;
-            jQuery('.addcat').parents().find('#faqs-container').find('h3:first').css({
+            console.log(sCounter);
+            jQuery('#faqs-container').find('h3:first').css({
                 'background': '',
                 'color': ''
             });
-            var parent = jQuery(this).closest('#faqs-container');
-            var head = jQuery('.addcat').parents().find('#faqs-container').find('h3:first').clone(true).appendTo(parent);
-            var heading_text = head.find('a').text('New Category');
-            var content = jQuery('.addcat').parents().find('#faqs-container').find('h3:first').next().clone(true).removeClass('firstelement').appendTo(parent);
-            
+            var parent = jQuery('#faqs-container');
+            var head = jQuery('#faqs-container').find('h3:first').clone(true).appendTo(parent);
+            var heading_text = head.find('a').text('New Form');
+            var content = jQuery('#faqs-container').find('h3:first').next().clone(true).removeClass('firstelement').appendTo(parent);
 
             jQuery("div.accordian").accordion({
             heightStyle: "content",
@@ -211,18 +193,6 @@ jQuery(document).ready(function($) {
                     }
                 }
             });
-
-            var colorappend = jQuery('.addcat').parents().find('#faqs-container').find('.accordian:last').find('.ui-accordion-content');
-            
-            var headingcolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.head-color').val();
-            var desccolor = jQuery(this).closest('.content').find('.ui-accordion-content').find('.desc-color').val();
-
-
-            colorappend.find('.wp-picker-container').remove();
-            colorappend.find('.insert-picker:eq(0)').append('<input type="text" class="head-color" value="'+headingcolor+'" />');
-            colorappend.find('.insert-picker:eq(2)').append('<input type="text" class="desc-color" value="'+desccolor+'" />');
-
-            colorappend.find('.head-color,.desc-color').wpColorPicker();
             content.find('button.fullshortcode').attr('id', sCounter);
             jQuery('.accordian').accordion('refresh');
 
@@ -255,20 +225,16 @@ jQuery(document).ready(function($) {
             if (jQuery(this).closest('.ui-accordion-header').next('.ui-accordion-content').hasClass('firstelement')) {
                 alert('You can not delete it as it is first element!');
             } else {
-
                 var head = jQuery(this).closest('.ui-accordion-header');
                 var body = jQuery(this).closest('.ui-accordion-header').next('.ui-accordion-content');
                 head.remove();
                 body.remove();
             }
         }
-
-
-            
     });
-    jQuery('.head-color,.desc-color').wpColorPicker();
 
     jQuery('#caption').on('click', '.save-meta', function(event) {
+        console.log('save-meta');
         event.preventDefault();     
         jQuery('.se-saved-con').show();
          jQuery('#la-saved').hide();
@@ -276,6 +242,7 @@ jQuery(document).ready(function($) {
           jQuery('.accordian>.content').each(function(index,val) {
             var cats = {};
             cats.cat_name = jQuery(this).find('.catname').val();
+            cats.shortcode=jQuery(this).find('.fullshortcode').attr('id');
             cats.allcapImages = [];
             jQuery(this).find('.ui-accordion-content').each(function(index, val) {
                 var images = {};
@@ -283,12 +250,10 @@ jQuery(document).ready(function($) {
                 images.cat_name = jQuery(this).find('.catname').val();
                 images.cap_img = jQuery(this).find('img').attr('src');
                 images.cap_head = jQuery(this).find('.capheading').val();
-
-                images.shortcode = jQuery(this).find('.fullshortcode').attr('id');
-                images.counter = jQuery(this).siblings().find('.fullshortcode').attr('id'); 
                 cats.allcapImages.push(images);
             });
             allcats.push(cats);
+            console.log(cats);
         });
         var data = {
             action : 'la_save_caption_options',
@@ -304,14 +269,8 @@ jQuery(document).ready(function($) {
           
     });
 
-    jQuery('.content').on('click','button.fullshortcode',function(event) {
+    jQuery('#faqs-container').on('click','button.fullshortcode',function(event) {
         event.preventDefault();
         prompt("Copy and use this Shortcode", '[smiling-form id="'+jQuery(this).attr('id')+'"]');
     });
-
-    jQuery('.enableprev').click(function() {
-
-        jQuery(this).siblings('.preview').toggle();
-    });
-
 });

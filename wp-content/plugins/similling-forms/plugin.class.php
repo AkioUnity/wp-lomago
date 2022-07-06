@@ -12,7 +12,6 @@
 			add_shortcode( 'smiling-form', array($this,'render_caption_hovers') );
 			add_action( 'admin_init', array($this, 'wdo_process_export_settings') );
 			add_action( 'admin_init', array($this, 'wdo_process_import_settings') );
-			add_filter( 'widget_text', 'do_shortcode' );
 		}
 
 		// Admin Options Page 
@@ -98,20 +97,18 @@
                             </a>
                             <button class="button removecat"><span class="dashicons dashicons-dismiss"
                                                                    title="Remove Category"></span></button>
-                            <span class="moreimages">
-					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
-								<button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
-
-					    	</span>
                         </h3>
 				   <div class="accordian content">
-					
-				<?php foreach ($data['allcapImages'] as $key => $data2) { ?>   
-				
-				        <h3><a class=href="#"><?php if ($data2['img_name']!=='') {
+                       <h4><a href="#">Field</a><button class="button removeitem"><span class="dashicons dashicons-dismiss" title="Remove Image"></span></button></h4>
+                       <div class="moreimages">
+					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
+                                <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
+					    	</div>
+				<?php foreach ($data['allcapImages'] as $key => $data2) { ?>
+				        <h3><a href="#"><?php if ($data2['img_name']!=='') {
 				        	echo stripcslashes($data2['img_name']);
 				        } else {
-				        	echo "image";
+				        	echo "Field";
 				        }
 				         ?></a><button class="button removeitem"><span class="dashicons dashicons-dismiss" title="Remove Image"></span></button></h3>
 				        <div>
@@ -151,7 +148,7 @@
 					        					<span class="dashicons dashicons-dismiss">
 					        					</span>
 				        					</span>'; } ?>
-				        		
+
 				        	</span><br>
 				        	<hr>
 				        	<h4 style="font-size: 20px;text-align: center;"><?php _e( 'Caption Settings', 'la-captionhover' ); ?></h4>
@@ -163,26 +160,13 @@
 									</td>
 									<td style="width:30%">
 										<input type="text" class="widefat capheading form-control" value="<?php echo stripcslashes($data2['cap_head']); ?>">
-									</td>	
+									</td>
 									<td style="width:40%">
 										<p class="description"><?php _e( 'Give heading to be shown on image.', 'la-captionhover' ); ?></p>
 									</td>
 								</tr>
 							</table>
-							<hr>
-
-					       	<span class="moreimages">
-					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
-								<button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
-								<button class="button-primary fullshortcode pull-right" id="<?php echo $data2['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
-								
-					    	</span>
-
-					    	<div class="preview-container" style="display: none;">
-                                <?php echo do_shortcode("[smiling-form id='".$data2['shortcode']."']"); ?>
-                            </div>
- 
-				        </div> 
+				        </div>
 				        <?php } ?>
 
 				   </div>
@@ -243,22 +227,15 @@
 									</td>
 								</tr>
 							</table>
-							<hr>
-							<span class="moreimages">
-					    		<button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b><?php _e( 'Add New Image', 'la-captionhover' ); ?></button>
-								<button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
-								<button class="button-primary fullshortcode pull-right" id="1"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
-
-					    	</span>
 				        </div>
 
 
 				   </div>
 				<?php } ?>
 				</div>
-					<button class="btn btn-success save-meta"><?php _e( 'Save Changes', 'la-captionhover' ); ?></button></br>
-					<span id="la-loader" class="pull-right"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>images/ajax-loader.gif"></span>
-					<span id="la-saved"><strong><?php _e( 'Changes Saved!', 'la-captionhover' ); ?></strong></span>
+                <button class="btn btn-success save-meta"><?php _e( 'Save Changes', 'la-captionhover' ); ?></button></br>
+                <span id="la-loader" class="pull-right"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>images/ajax-loader.gif"></span>
+                <span id="la-saved"><strong><?php _e( 'Changes Saved!', 'la-captionhover' ); ?></strong></span>
 			</div>
 			<p class="clearfix"></p>
 			
@@ -272,10 +249,10 @@ function render_caption_hovers($atts){
 		ob_start(); ?>
 		<div class="image-hover-page-container animatedParent">
 				<?php foreach($saved_captions['posts'] as $key => $data): ?>
+			<?php if ($atts['id']== $data['shortcode']): ?>
 					<?php foreach($data['allcapImages'] as $key => $data2): ?>
-						<?php if ($atts['id']== $data2['shortcode']): ?>
-							<?php 
-								wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ )); 
+							<?php
+								wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
 								wp_enqueue_script( 'wdo-hover-front-js', plugins_url( 'js/front.js', __FILE__ ), array('jquery'));
 							 ?>
                             <div class="ih-item circle effect1">
@@ -288,8 +265,8 @@ function render_caption_hovers($atts){
 									?>" alt="img">
                                 </div>
                             </div>
-						<?php endif ?>
 					<?php endforeach; ?>
+					<?php endif ?>
 
 				<?php endforeach; ?>
 		</div>

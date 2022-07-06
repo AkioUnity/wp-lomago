@@ -6,14 +6,6 @@
  	display: block;
 }
 
-.enableprev{
-	margin-bottom: 15px !important;
-	background-color: #55cc90 !important;
-	color: white !important;
-	border: none !important;
-	border-radius: 5px !important;
-	font-size: medium !important;
-}
 .removeitem, .removecat {
 	color: white !important;
 	background-color: #f3f5f600 !important;
