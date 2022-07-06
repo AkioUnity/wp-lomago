@@ -1,19 +1,19 @@
 <?php 
 
 	/*
-	Plugin Name: Image Hover Effects
-	Description: Add beautiful Image hover effects with caption to your website.
-	Plugin URI: http://webdevocean.com/image-hover-effects
-	Author: Labib Ahmed
-	Author URI: http://webdevocean.com
-	Version: 5.2
+	Plugin Name: Smiling Forms
+	Description: Add Smiling Image for CF7
+	Plugin URI: https://www.lomago.io/
+	Author: Akio Monk
+	Author URI: https://www.lomago.io/
+	Version: 1.0
 	License: GPL2
-	Text Domain: la-captionhover 
+	Text Domain: smiling-forms
 	*/
 	
 	/*
 	
-	    Copyright (C) 2022  Labib Ahmed  webdevocean@gmail.com
+	    Copyright (C) 2022  Akio  developer@lomago.de
 	
 	    This program is free software; you can redistribute it and/or modify
 	    it under the terms of the GNU General Public License, version 2, as
