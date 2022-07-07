@@ -87,18 +87,19 @@
                     <button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
                 </span>
 				<div id="faqs-container" class="accordian">
-				<?php if (isset($saved_captions['posts'])) { ?>
-				<?php foreach ($saved_captions['posts'] as $key => $data) { ?>
-                    <h3><a href="#"><?php echo "Form" . $data['shortcode'];} ?>  </a>
+				<?php if (!isset($saved_captions['posts'])) {
+                    $saved_captions['posts']=array(array('shortcode'=>1,'allcapImages'=>array(array('img_name'=>'default'),array('img_name'=>'Field1'))));
+				    }?>
+				<?php
+				foreach ($saved_captions['posts'] as $key0 => $data) {
+				    ?>
+                    <h3><a href="#"><?php echo "Form" . $data['shortcode']; ?>  </a>
                         <button class="button removecat"><span class="dashicons dashicons-dismiss"
                                                            title="Remove Category"></span></button>
                     </h3>
 				   <div class="accordian content">
-				<?php $cn=0;
-                foreach ($data['allcapImages'] as $key => $data2) {
-                    $cn++;
-                    if ($cn==1){
-                    ?>
+                    <?php foreach ($data['allcapImages'] as $key => $data2) {
+                    if ($key==0){  ?>
                         <h4 style="background: darkred">Form Settings</h4>
                         <div class="moreimages">
                         <button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Field', 'la-captionhover' ); ?></button>
@@ -141,29 +142,7 @@
 				        </div>
 				        <?php } ?>
 				   </div>
-				   <?php } else { ?>
-				    <h3><a href="#">Image Caption Hover</a><button class="button removecat"><span class="dashicons dashicons-dismiss" title="Delete Category"></span></button></h3>
-
-				   <div class="accordian content">
-
-				        <h3><a class=href="#">Image</a><button class="button removeitem"><span class="dashicons dashicons-dismiss" title="Delete Image"></span></button></h3>
-				        <div>
-				        	<table class="form-table">
-				        		<tr>
-				        			<td >
-				        				<strong><?php _e( 'Field Name', 'la-captionhover' ); ?></strong>
-				        			</td>
-				        			<td >
-				        				<input type="text" class="imgname widefat form-control" value="">
-				        			</td>
-				        		</tr>
-				        	</table>
-				        	<button class="addimage button"><?php _e( 'Upload Image', 'la-captionhover' ); ?></button>
-				        	<span class="image">
-				        	</span>
-				        </div>
-				   </div>
-				<?php } ?>
+				   <?php } ?>
 				</div>
                 <button class="btn btn-success save-meta"><?php _e( 'Save Changes', 'la-captionhover' ); ?></button></br>
                 <span id="la-loader" class="pull-right"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>images/ajax-loader.gif"></span>
@@ -180,15 +159,12 @@ function render_caption_hovers($atts){
 	if (isset($saved_captions['posts'])) {
 		ob_start(); ?>
 		<div class="image-hover-page-container animatedParent">
-				<?php foreach($saved_captions['posts'] as $key => $data): ?>
+				<?php foreach($saved_captions['posts'] as $key0 => $data): ?>
 			<?php if ($atts['id']== $data['shortcode']): ?>
-					<?php
-					$cn=0;
-					foreach($data['allcapImages'] as $key => $data2):
-					    $cn++;
+                <?php foreach($data['allcapImages'] as $key => $data2):
                         wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
                         wp_enqueue_script( 'wdo-hover-front-js', plugins_url( 'js/front.js', __FILE__ ), array('jquery'));
-                        if ($cn==1){ ?>
+                        if ($key==0){ ?>
                             <div class="ih-item circle effect1">
                                 <div class='spinner'></div>
                                 <div class="img"><img id="smile_img" style="height:100%;" src="<?php if ( $data2['cap_img'] != '' ) {
