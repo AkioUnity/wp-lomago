@@ -87,6 +87,7 @@
                 </div>
                 <span class="moreimages">
                     <button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
+                    <button class="btn btn-success save-meta pull-right"><?php _e( 'Save Changes', 'la-captionhover' ); ?></button>
                 </span>
 				<div id="faqs-container" class="accordian">
 				<?php if (!isset($saved_captions['posts'])) {
@@ -101,25 +102,76 @@
                     </h3>
 				   <div class="accordian content">
                     <?php foreach ($data['allcapImages'] as $key => $data2) {
-                    if ($key==0){  ?>
-                        <h4 style="background: #444444">Form Settings</h4>
-                        <div class="moreimages">
-                        <button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Field', 'la-captionhover' ); ?></button>
-                        <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
-                        <table class="form-table">
-                    <?php }else{ ?>
-                        <h3><a href="#"><?php if ( $data2['img_name'] !== '' ) {
-								echo stripcslashes( $data2['img_name'] );
-							} else {
-								echo "Field";
-							}?>
-							</a>
-                            <button class="button removeitem"><span class="dashicons dashicons-dismiss"
-                                                                title="Remove Image"></span></button>
-                        </h3>
-                        <div>
+                        if ($key==0){  ?>
+                            <h4 style="background: #444444">Form Settings</h4>
+                            <div class="moreimages">
+                                <button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Field', 'la-captionhover' ); ?></button>
+                                <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
+                                <table class="form-table">
+                                <tr>
+									<td>
+										<strong><?php _e( 'Image Shape', 'la-captionhover' ); ?></strong>
+									</td>
+									<td>
+										<select class="styleopt form-control widefat">
+										  <option value="circle" <?php if ( $data['cap_style'] == 'circle' ) echo 'selected="selected"'; ?>><?php _e( 'Circle', 'la-captionhover' ); ?></option>
+										  <option value="square" <?php if ( $data['cap_style'] == 'square' ) echo 'selected="selected"'; ?>><?php _e( 'Square', 'la-captionhover' ); ?></option>
+										</select>
+									</td>
+									<td>
+										<p class="description"><?php _e( 'Select shape of image. It could be square or circle.', 'la-captionhover' ); ?></p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<strong><?php _e( 'Animation Direction', 'la-captionhover' ); ?></strong>
+									</td>
+									<td>
+										<select class="directionopt form-control widefat">
+										  <option <?php if ( $data['cap_direction'] == 'left_to_right' ) echo 'selected="selected"'; ?> value="left_to_right"><?php _e( 'Left To Right', 'la-captionhover' ); ?></option>
+										  <option <?php if ( $data['cap_direction'] == 'right_to_left' ) echo 'selected="selected"'; ?> value="right_to_left"><?php _e( 'Right To Left', 'la-captionhover' ); ?></option>
+										  <option <?php if ( $data['cap_direction'] == 'top_to_bottom' ) echo 'selected="selected"'; ?> value="top_to_bottom"><?php _e( 'Top To Bottom', 'la-captionhover' ); ?></option>
+										  <option <?php if ( $data['cap_direction'] == 'bottom_to_top' ) echo 'selected="selected"'; ?> value="bottom_to_top"><?php _e( 'Bottom To Top', 'la-captionhover' ); ?></option>
+										</select>
+									</td>
+									<td>
+										<p class="description"><?php _e( 'Select direction in which animation occur.', 'la-captionhover' ); ?></p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<strong><?php _e( 'Select Hover Effect', 'la-captionhover' ); ?></strong>
+									</td>
+									<td>
+										<select class="effectopt form-control widefat">
+										  <option <?php if ( $data['cap_effect'] == 'effect1' ) echo 'selected="selected"'; ?> value="effect1">Effect1</option>
+										  <option <?php if ( $data['cap_effect'] == 'effect2' ) echo 'selected="selected"'; ?> value="effect2">Effect2</option>
+										  <option <?php if ( $data['cap_effect'] == 'effect3' ) echo 'selected="selected"'; ?> value="effect3">Effect3</option>
+										  <option <?php if ( $data['cap_effect'] == 'effect4' ) echo 'selected="selected"'; ?> value="effect4">Effect4</option>
+										  <option <?php if ( $data['cap_effect'] == 'effect5' ) echo 'selected="selected"'; ?> value="effect5">Effect5</option>
+										  <option <?php if ( $data['cap_effect'] == 'effect6' ) echo 'selected="selected"'; ?> value="effect6">Effect6</option>
+										  <option <?php if ( $data['cap_effect'] == 'effect7' ) echo 'selected="selected"'; ?> value="effect7">Effect7</option>
+										  <option <?php if ( $data['cap_effect'] == 'effect8' ) echo 'selected="selected"'; ?> value="effect8">Effect8</option>
+										</select>
+									</td>
+									<td>
+										<p class="description"><?php _e( 'Select animation.', 'la-captionhover' ); ?></p>
+									</td>
+								</tr>
+                    <?php }
+                        else{ ?>
+                            <h3><a href="#"><?php if ( $data2['img_name'] !== '' ) {
+                                    echo stripcslashes( $data2['img_name'] );
+                                } else {
+                                    echo "Field";
+                                }?>
+                                </a>
+                                <button class="button removeitem"><span class="dashicons dashicons-dismiss"
+                                                                    title="Remove Image"></span></button>
+                            </h3>
+                            <div>
+                                <table class="form-table">
                         <?php } ?>
-				        	<table class="form-table">
 				        		<tr>
 				        			<td >
 				        				<strong><?php _e( 'Field Name', 'la-captionhover' ); ?></strong>
@@ -141,12 +193,12 @@
                                     </td>
 				        		</tr>
 				        	</table>
-				        </div>
+				            </div>
 				        <?php } ?>
 				   </div>
 				   <?php } ?>
 				</div>
-                <button class="btn btn-success save-meta"><?php _e( 'Save Changes', 'la-captionhover' ); ?></button></br>
+
                 <span id="la-loader" class="pull-right"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>images/ajax-loader.gif"></span>
                 <span id="la-saved"><strong><?php _e( 'Changes Saved!', 'la-captionhover' ); ?></strong></span>
 			</div>
@@ -167,28 +219,43 @@ function render_caption_hovers($atts){
                         wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
                         wp_enqueue_script( 'wdo-hover-front-js', plugins_url( 'js/front.js', __FILE__ ), array('jquery'));
                         if ($key==0){ ?>
-                            <div class="ih-item circle effect1">
-                                <div class="img"><img id="smile_img" style="height:100%;" src="<?php if ( $data2['cap_img'] != '' ) {
-										echo $data2['cap_img'];
-									} else {
-										echo "http://www.gemologyproject.com/wiki/images/5/5f/Placeholder.jpg";
-									}
-									?>" alt="img">
+                            <div class="ih-item <?php echo $data['cap_style']; ?>  <?php echo $data['cap_effect']; ?> <?php if ($data['cap_effect']=='effect6' && $data['cap_style']=='circle') {
+			                    	echo "scale_up";
+			                    } elseif($data['cap_effect']=='effect8' && $data['cap_style']=='square') {
+			                    	echo "scale_up";
+			                    }elseif($data['cap_effect']=='effect1' && $data['cap_style']=='square' && $data['cap_direction']=='left_to_right'){
+			                    		echo "left_and_right";
+			                    }else{
+
+			                    	echo $data['cap_direction'];
+			                    }
+			                     ?>">
+			                     <div class="taphover" >
+                                    <div class="img"><img id="smile_img" style="height:100%;" src="<?php if ( $data2['cap_img'] != '' ) {
+                                            echo $data2['cap_img'];
+                                        } else {
+                                            echo "http://www.gemologyproject.com/wiki/images/5/5f/Placeholder.jpg";
+                                        }
+                                        ?>" alt="img">
+                                    </div>
                                 </div>
                             </div>
                             <script type="text/javascript">
                                 let smile_image=document.querySelector("#smile_img");
-                                let image_url;
+                                let effect=smile_image.parentNode.parentNode;
                             </script>
                             <?php }else{ ?>
-<script type="text/javascript">
-jQuery(document).ready(function() {
-   document.querySelector('[name="<?=$data2['img_name']?>"]').onfocus=function (){
-                image_url='<?=$data2['cap_img']?>';
-                smile_image.src=image_url;
-            }
-            });
-</script>
+            <script type="text/javascript">
+            jQuery(document).ready(function() {
+               document.querySelector('[name="<?=$data2['img_name']?>"]').onfocus=function (){
+                            effect.className="a_hover";
+                            setTimeout(function() {
+                              effect.className="taphover";
+                              smile_image.src='<?=$data2['cap_img']?>';
+                            }, 350);
+                        }
+                        });
+            </script>
 					        <?php }
                     endforeach; ?>
 					<?php endif ?>
