@@ -174,7 +174,7 @@ jQuery(document).ready(function($) {
           jQuery('.accordian>.content').each(function(index,val) {
             var cats = {};
             cats.shortcode=jQuery(this).find('.fullshortcode').attr('id');
-            cats.cap_style = jQuery(this).find('.styleopt').val();
+            // cats.cap_style = jQuery(this).find('.styleopt').val();
               cats.cap_effect = jQuery(this).find('.effectopt').val();
               cats.cap_direction = jQuery(this).find('.directionopt').val();
               cats.speed = jQuery(this).find('.speed').val();

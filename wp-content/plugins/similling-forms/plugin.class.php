@@ -109,20 +109,6 @@
                                 <button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Field', 'la-captionhover' ); ?></button>
                                 <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
                                 <table class="form-table">
-                                <tr>
-									<td>
-										<strong><?php _e( 'Image Shape', 'la-captionhover' ); ?></strong>
-									</td>
-									<td>
-										<select class="styleopt form-control widefat">
-										  <option value="circle" <?php if ( $data['cap_style'] == 'circle' ) echo 'selected="selected"'; ?>><?php _e( 'Circle', 'la-captionhover' ); ?></option>
-										  <option value="square" <?php if ( $data['cap_style'] == 'square' ) echo 'selected="selected"'; ?>><?php _e( 'Square', 'la-captionhover' ); ?></option>
-										</select>
-									</td>
-									<td>
-										<p class="description"><?php _e( 'Select shape of image. It could be square or circle.', 'la-captionhover' ); ?></p>
-									</td>
-								</tr>
 								<tr>
 									<td>
 										<strong><?php _e( 'Animation Direction', 'la-captionhover' ); ?></strong>
@@ -232,11 +218,9 @@ function render_caption_hovers($atts){
                         wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
                         wp_enqueue_script( 'wdo-hover-front-js', plugins_url( 'js/front.js', __FILE__ ), array('jquery'));
                         if ($key==0){ ?>
-                            <div class="ih-item <?php echo $data['cap_style']; ?>  <?php echo $data['cap_effect']; ?> <?php if ($data['cap_effect']=='effect6' && $data['cap_style']=='circle') {
+                            <div class="ih-item square <?php echo $data['cap_effect']; ?> <?php if($data['cap_effect']=='effect8') {
 			                    	echo "scale_up";
-			                    } elseif($data['cap_effect']=='effect8' && $data['cap_style']=='square') {
-			                    	echo "scale_up";
-			                    }elseif($data['cap_effect']=='effect1' && $data['cap_style']=='square' && $data['cap_direction']=='left_to_right'){
+			                    }elseif($data['cap_effect']=='effect1' && $data['cap_direction']=='left_to_right'){
 			                    		echo "left_and_right";
 			                    }else{
 
