@@ -177,6 +177,7 @@ jQuery(document).ready(function($) {
             cats.cap_style = jQuery(this).find('.styleopt').val();
               cats.cap_effect = jQuery(this).find('.effectopt').val();
               cats.cap_direction = jQuery(this).find('.directionopt').val();
+              cats.speed = jQuery(this).find('.speed').val();
             cats.allcapImages = [];
             jQuery(this).find('.ui-accordion-content').each(function(index, val) {
                 var images = {};

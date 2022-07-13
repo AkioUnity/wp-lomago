@@ -81,10 +81,11 @@
 				<div class="overlay-message">
 				    <p>Changes Saved..!</p>
 				</div>
-				<div>
-                    <a href="https://lomago.net/smiling-plugin-4-c7" target="_blank"><h3>Documentation</h3></a>
-                    <h2 style="text-align: center;font-size: 25px;">Smiling Effects For CF7</h2>
+				<div style="margin: 20px auto;font-size: larger;">
+                    <a class="button button-primary" href="https://lomago.net/smiling-plugin-4-c7" target="_blank">Documentation</a>
+                    <a class="button button-primary" href="<?php echo plugin_dir_url( __FILE__ ); ?>documentation/" target="_blank">Effect List</a>
                 </div>
+                <h2 style="text-align: center;font-size: 25px;">Smiling Effects For CF7</h2>
                 <span class="moreimages">
                     <button class="button-primary addcat"><?php _e( 'Add New Form', 'la-captionhover' ); ?></button>
                     <button class="btn btn-success save-meta pull-right"><?php _e( 'Save Changes', 'la-captionhover' ); ?></button>
@@ -140,10 +141,11 @@
 								</tr>
 								<tr>
 									<td>
-										<strong><?php _e( 'Select Hover Effect', 'la-captionhover' ); ?></strong>
+										<strong><?php _e( 'Select Change Effect', 'la-captionhover' ); ?></strong>
 									</td>
 									<td>
 										<select class="effectopt form-control widefat">
+										<option <?php if ( $data['cap_effect'] == 'simple' ) echo 'selected="selected"'; ?> value="simple">Simple</option>
 										  <option <?php if ( $data['cap_effect'] == 'effect1' ) echo 'selected="selected"'; ?> value="effect1">Effect1</option>
 										  <option <?php if ( $data['cap_effect'] == 'effect2' ) echo 'selected="selected"'; ?> value="effect2">Effect2</option>
 										  <option <?php if ( $data['cap_effect'] == 'effect3' ) echo 'selected="selected"'; ?> value="effect3">Effect3</option>
@@ -156,6 +158,17 @@
 									</td>
 									<td>
 										<p class="description"><?php _e( 'Select animation.', 'la-captionhover' ); ?></p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<strong>Effect Speed</strong>
+									</td>
+									<td>
+										<input type="text" class="speed form-control" value="<?php echo ( isset($data['speed']) && $data['speed'] != '' ) ? stripcslashes($data['speed']) : 100; ?>">
+									</td>
+									<td>
+										<p class="description">ms</p>
 									</td>
 								</tr>
                     <?php }
@@ -252,7 +265,7 @@ function render_caption_hovers($atts){
                             setTimeout(function() {
                               effect.className="taphover";
                               smile_image.src='<?=$data2['cap_img']?>';
-                            }, 350);
+                            }, <?=$data['speed']?>);
                         }
                         });
             </script>
