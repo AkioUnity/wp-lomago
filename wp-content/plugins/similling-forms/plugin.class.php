@@ -173,7 +173,7 @@
                         <?php } ?>
 				        		<tr>
 				        			<td >
-				        				<strong><?php _e( 'Field Name', 'la-captionhover' ); ?></strong>
+				        				<strong>Field Selector</strong>
 				        			</td>
 				        			<td >
 				        				<input type="text" class="imgname widefat form-control" value="<?php echo ( isset($data2['img_name']) && $data2['img_name'] != '' ) ? stripcslashes($data2['img_name']) : ''; ?>">
@@ -217,7 +217,7 @@ function render_caption_hovers($atts){
                 <?php foreach($data['allcapImages'] as $key => $data2):
                         wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
                         wp_enqueue_script( 'wdo-hover-front-js', plugins_url( 'js/front.js', __FILE__ ), array('jquery'));
-                        if ($key==0){ ?>
+                    if ($key==0){ ?>
                             <div class="ih-item square <?php echo $data['cap_effect']; ?> <?php if($data['cap_effect']=='effect8') {
 			                    	echo "scale_up";
 			                    }elseif($data['cap_effect']=='effect1' && $data['cap_direction']=='left_to_right'){
@@ -239,23 +239,59 @@ function render_caption_hovers($atts){
                             </div>
                             <script type="text/javascript">
                                 let smile_image=document.querySelector("#smile_img");
+                                let default_image=smile_image.src;
                                 let effect=smile_image.parentNode.parentNode;
+                                let is_focus=false;
+                                let notification=[];
                             </script>
-                            <?php }else{ ?>
+                        <?php }elseif ($data2['img_name']=='Error' || $data2['img_name']=='Success' ){ ?>
+                            <script type="text/javascript">
+                                notification['<?=$data2['img_name']?>']='<?=$data2['cap_img']?>'
+                            </script>
+                        <?php }else{ ?>
             <script type="text/javascript">
             jQuery(document).ready(function() {
                document.querySelector('[name="<?=$data2['img_name']?>"]').onfocus=function (){
                             effect.className="a_hover";
+                            is_focus=true;
+                            console.log('onfocus','[name="<?=$data2['img_name']?>"]');
                             setTimeout(function() {
                               effect.className="taphover";
                               smile_image.src='<?=$data2['cap_img']?>';
                             }, <?=$data['speed']?>);
                         }
-                        });
+                document.querySelector('[name="<?=$data2['img_name']?>"]').onblur=function (){
+                   is_focus=false;
+                   effect.className="a_hover";
+                   console.log('onblur','[name="<?=$data2['img_name']?>"]');
+                   setTimeout(function() {
+                       if (!is_focus)
+                           smile_image.src=default_image;
+                       effect.className="taphover";
+                            }, <?=$data['speed']?>);
+                        };
+            });
             </script>
-					        <?php }
-                    endforeach; ?>
-					<?php endif ?>
+                        <?php } ?>
+                    <?php endforeach; ?>
+                    <script type="text/javascript">
+                                jQuery(document).ready(function() {
+                                    jQuery('.wpcf7-response-output').on('DOMSubtreeModified', function(){
+                                        let text=jQuery(this).text();
+                                        console.log(text)
+                                    effect.className="a_hover";
+                                    is_focus=true;
+                                    setTimeout(function() {
+                                      effect.className="taphover";
+                                        if (text.includes('Ein oder mehrere Felder sind'))
+                                            smile_image.src=notification['Error'];
+                                        else
+                                            smile_image.src=notification['Success'];
+                                    }, <?=$data['speed']?>);
+                                    });
+                                });
+                        </script>
+                <?php endif ?>
 				<?php endforeach; ?>
 		</div>
 		<?php				

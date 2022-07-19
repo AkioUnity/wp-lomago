@@ -6,7 +6,7 @@
 	Plugin URI: https://www.lomago.io/
 	Author: Akio Monk
 	Author URI: https://www.lomago.io/
-	Version: 1.1
+	Version: 1.1.1
 	License: GPL2
 	Text Domain: smiling-forms
 	*/
