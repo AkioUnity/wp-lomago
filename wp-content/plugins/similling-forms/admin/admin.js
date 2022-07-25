@@ -173,6 +173,7 @@ jQuery(document).ready(function($) {
         var allcats = []; 
           jQuery('.accordian>.content').each(function(index,val) {
             var cats = {};
+              cats.form_name = jQuery(this).find('.form_name').val();
             cats.shortcode=jQuery(this).find('.fullshortcode').attr('id');
             // cats.cap_style = jQuery(this).find('.styleopt').val();
               cats.cap_effect = jQuery(this).find('.effectopt').val();
@@ -186,7 +187,6 @@ jQuery(document).ready(function($) {
                 cats.allcapImages.push(images);
             });
             allcats.push(cats);
-            console.log(cats);
         });
         var data = {
             action : 'la_save_caption_options',
@@ -194,7 +194,8 @@ jQuery(document).ready(function($) {
         } 
 
          jQuery.post(laAjax.url, data, function(resp) {
-            // window.location.reload(true);
+            window.location.reload(true);
+             console.log(allcats);
             jQuery('.se-saved-con').hide();
             jQuery('.overlay-message').show();
             jQuery('.overlay-message').delay(2000).fadeOut();

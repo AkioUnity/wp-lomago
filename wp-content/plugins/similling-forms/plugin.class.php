@@ -97,7 +97,7 @@
 				<?php
 				foreach ($saved_captions['posts'] as $key0 => $data) {
 				    ?>
-                    <h3><a href="#"><?php echo "Form" . $data['shortcode']; ?>  </a>
+                    <h3><a href="#"><?php echo (isset($data['form_name']) && $data['form_name'] != '' ) ? stripcslashes($data['form_name']) : 'Form'. $data['shortcode']; ?>  </a>
                         <button class="button removecat"><span class="dashicons dashicons-dismiss"
                                                            title="Remove Category"></span></button>
                     </h3>
@@ -109,6 +109,16 @@
                                 <button class="button moreimg"><b title="Add New" class="dashicons dashicons-plus-alt"></b> <?php _e( 'Add New Field', 'la-captionhover' ); ?></button>
                                 <button class="button-primary fullshortcode pull-right" id="<?php echo $data['shortcode']; ?>"><?php _e( 'Get Shortcode', 'la-captionhover' ); ?></button>
                                 <table class="form-table">
+                                <tr>
+									<td>
+										<strong>Form Name</strong>
+									</td>
+									<td>
+										<input type="text" class="form_name form-control" value="<?php echo ( isset($data['form_name']) && $data['form_name'] != '' ) ? stripcslashes($data['form_name']) : 'Form'. $data['shortcode']; ?>">
+									</td>
+									<td>
+									</td>
+								</tr>
 								<tr>
 									<td>
 										<strong><?php _e( 'Animation Direction', 'la-captionhover' ); ?></strong>
@@ -251,10 +261,10 @@ function render_caption_hovers($atts){
                         <?php }else{ ?>
             <script type="text/javascript">
             jQuery(document).ready(function() {
-               document.querySelector('[name="<?=$data2['img_name']?>"]').onfocus=function (){
+               document.querySelector('[name="<?=$data2['img_name']?>"]').onclick=function (){
                             effect.className="a_hover";
                             is_focus=true;
-                            console.log('onfocus','[name="<?=$data2['img_name']?>"]');
+                            console.log('onclick','[name="<?=$data2['img_name']?>"]');
                             setTimeout(function() {
                               effect.className="taphover";
                               smile_image.src='<?=$data2['cap_img']?>';
