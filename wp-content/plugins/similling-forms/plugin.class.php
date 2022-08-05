@@ -284,26 +284,51 @@ function render_caption_hovers($atts){
             </script>
                         <?php } ?>
                     <?php endforeach; ?>
-                    <script type="text/javascript">
-                                jQuery(document).ready(function() {
-                                    jQuery('.wpcf7-response-output').on('DOMSubtreeModified', function(){
-                                        let text=jQuery(this).text();
-                                        console.log(text)
-                                    effect.className="a_hover";
-                                    is_focus=true;
-                                    setTimeout(function() {
-                                      effect.className="taphover";
-                                        if (text.includes('Ein oder mehrere Felder sind'))
-                                            smile_image.src=notification['Error'];
-                                        else
-                                            smile_image.src=notification['Success'];
-                                    }, <?=$data['speed']?>);
-                                    });
-                                });
-                        </script>
+
                 <?php endif ?>
 				<?php endforeach; ?>
 		</div>
+		<div id="qr_connection" style="display: none;text-align: center">
+		    <a href="" target="_blank" id="qr_a">
+                <img src="https://chart.googleapis.com/chart?chs=300x300&amp;cht=qr&amp;chl=https://admin.lomago.io/home/qr?email=blank" id="qr_image">
+		    </a>
+		    <h5 style="font-weight: bold;">
+		        Please scan or click for this Info Channel per messenger
+            </h5>
+
+        </div>
+		<script type="text/javascript">
+        jQuery(document).ready(function() {
+            let qr_connection=jQuery('#qr_connection');
+            let qr_image=document.getElementById('qr_image');
+            let qr_a=document.getElementById('qr_a');
+            jQuery('.wpcf7-response-output').after(qr_connection);
+            jQuery('.wpcf7-response-output').on('DOMSubtreeModified', function(){
+                let text=jQuery(this).text();
+                console.log(text)
+                effect.className="a_hover";
+                is_focus=true;
+                setTimeout(function() {
+                    effect.className="taphover";
+                    if (text.includes('Ein oder mehrere Felder sind'))
+                        smile_image.src=notification['Error'];
+                    else{
+                        smile_image.src=notification['Success'];
+                        let email=document.querySelector('[name="your-email"]').value;
+                        console.log(email);
+                        if (email){
+                            let url='https://admin.lomago.io/home/qr?email='+email;
+                            let qr_data='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='+url;
+                            qr_a.href=url;
+                            console.log(qr_data);
+                            qr_image.src=qr_data;
+                            qr_connection.show();
+                        }
+                    }
+                }, <?=$data['speed']?>);
+            });
+        });
+        </script>
 		<?php				
 	}
 	return ob_get_clean();
