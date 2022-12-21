@@ -161,10 +161,30 @@
 										<strong>Effect Speed</strong>
 									</td>
 									<td>
-										<input type="text" class="speed form-control" value="<?php echo ( isset($data['speed']) && $data['speed'] != '' ) ? stripcslashes($data['speed']) : 100; ?>">
+										<input type="number" class="speed form-control" value="<?php echo ( isset($data['speed']) && $data['speed'] != '' ) ? stripcslashes($data['speed']) : 100; ?>">
 									</td>
 									<td>
 										<p class="description">ms</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<strong>QR Code URL</strong>
+										<label class="switch" style="float: right">
+                                         <input type="checkbox" class="qr_checkbox" <?php echo ( isset($data['qr_checkbox']) && $data['qr_checkbox']=='true' ) ? 'checked' : '' ?> >
+                                         <div class="slider round">
+                                          <!--ADDED HTML -->
+                                          <span class="on">ON</span>
+                                          <span class="off">OFF</span>
+                                          <!--END-->
+                                         </div>
+                                        </label>
+									</td>
+									<td>
+										<input type="text" class="qr_url form-control" value="<?php echo ( isset($data['qr_url']) && $data['qr_url'] != '' ) ? stripcslashes($data['qr_url']) : 'https://admin.lomago.io/home/qr'; ?>">
+									</td>
+									<td>
+										<p class="description">QR Code connection URL</p>
 									</td>
 								</tr>
                     <?php }
@@ -221,8 +241,11 @@ function render_caption_hovers($atts){
 
 	if (isset($saved_captions['posts'])) {
 		ob_start(); ?>
+        <script type="text/javascript">
+         let value=[];
+        </script>
 		<div class="image-hover-page-container animatedParent">
-				<?php foreach($saved_captions['posts'] as $key0 => $data): ?>
+			<?php foreach($saved_captions['posts'] as $key0 => $data): ?>
 			<?php if ($atts['id']== $data['shortcode']): ?>
                 <?php foreach($data['allcapImages'] as $key => $data2):
                         wp_enqueue_style( 'wdo-ihe-hover-css', plugins_url( 'css/image-hover.min.css',__FILE__ ));
@@ -273,13 +296,15 @@ function render_caption_hovers($atts){
                 document.querySelector('[name="<?=$data2['img_name']?>"]').onblur=function (){
                    is_focus=false;
                    effect.className="a_hover";
-                   console.log('onblur','[name="<?=$data2['img_name']?>"]');
+                   value["<?=$data2['img_name']?>"]=this.value;
+                   console.log('onblur','[name="<?=$data2['img_name']?>"]',this.value);
+
                    setTimeout(function() {
                        if (!is_focus)
                            smile_image.src=default_image;
                        effect.className="taphover";
-                            }, <?=$data['speed']?>);
-                        };
+                   }, <?=$data['speed']?>);
+                };
             });
             </script>
                         <?php } ?>
@@ -308,23 +333,28 @@ function render_caption_hovers($atts){
                 console.log(text)
                 effect.className="a_hover";
                 is_focus=true;
+                if (text.includes('Vielen Dank für deine Mitteilung')) {
+                    console.log(value);
+                    let email=value['your-email'];
+                    // document.querySelector('[name="your-email"]').value;
+                    console.log(email);
+                    let isQR='<?=$data['qr_checkbox']?>';
+                    if (email && isQR=='true'){
+                        let url='<?=$data['qr_url']?>?email='+email;
+                        // 'https://admin.lomago.io/home/qr?email='+email;
+                        let qr_data='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='+url;
+                        qr_a.href=url;
+                        console.log(qr_data);
+                        qr_image.src=qr_data;
+                        qr_connection.show();
+                    }
+                }
                 setTimeout(function() {
                     effect.className="taphover";
-                    if (text.includes('Ein oder mehrere Felder sind'))
-                        smile_image.src=notification['Error'];
-                    else{
+                    if (text.includes('Vielen Dank für deine Mitteilung'))
                         smile_image.src=notification['Success'];
-                        let email=document.querySelector('[name="your-email"]').value;
-                        console.log(email);
-                        if (email){
-                            let url='https://admin.lomago.io/home/qr?email='+email;
-                            let qr_data='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl='+url;
-                            qr_a.href=url;
-                            console.log(qr_data);
-                            qr_image.src=qr_data;
-                            qr_connection.show();
-                        }
-                    }
+                    else
+                        smile_image.src=notification['Error'];
                 }, <?=$data['speed']?>);
             });
         });

@@ -179,6 +179,8 @@ jQuery(document).ready(function($) {
               cats.cap_effect = jQuery(this).find('.effectopt').val();
               cats.cap_direction = jQuery(this).find('.directionopt').val();
               cats.speed = jQuery(this).find('.speed').val();
+              cats.qr_checkbox = jQuery(this).find('.qr_checkbox').is(':checked');
+              cats.qr_url = jQuery(this).find('.qr_url').val();
             cats.allcapImages = [];
             jQuery(this).find('.ui-accordion-content').each(function(index, val) {
                 var images = {};
@@ -194,7 +196,7 @@ jQuery(document).ready(function($) {
         } 
 
          jQuery.post(laAjax.url, data, function(resp) {
-            window.location.reload(true);
+            // window.location.reload(true);
              console.log(allcats);
             jQuery('.se-saved-con').hide();
             jQuery('.overlay-message').show();
